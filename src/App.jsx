@@ -246,12 +246,13 @@ function App() {
             one is lower
           </li>
           <li>Here is the code snippet: </li>
-          <li>
+          
             <img
               src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
               alt="marks rules code snippet"
+              style={{maxWidth:"100vw"}}
             />
-          </li>
+          
         </ul>
       </div>
     </div>
