@@ -203,18 +203,20 @@ function App() {
         </p>
       </div>
       <div>
+        <span>View the entire source code here: </span>
         <a
           href="https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx"
           target="_blank"
           rel="noreferrer"
         >
-          View the source code here
+           https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx
         </a>{" "}
-        <span>
+        <p>
           (To verify the program, you can copy paste the code into chatgpt and
           ask, <span style={{fontWeight:"bold"}}>&quot;tell me the exact rules by which the marks are updated&quot;</span>){" "}
-        </span>
+        </p>
       </div>
+      <span style={{fontWeight:"bold"}}>Note: </span><span>Please make sure that marks are always numbers, and never empty. Use 0 if the student did not attend the quiz.</span>
       <div>
         <h4>How the app allots marks:-</h4>
         <ul>
@@ -223,24 +225,24 @@ function App() {
           </li>
           <li>
             For each student, we get their marks in all 3 quizzes by matching
-            same Registration Number in the 3 files{" "}
+            common Registration Number in the 3 files{" "}
           </li>
           <li>
-            If quiz3 marks are 5 or 6, quiz1 marks are set to (quiz1+1) or (10),
+            If Quiz3 marks are 5 or 6, Quiz1 marks are set to (quiz1+1) or (10),
             whichever one is lower. Quiz2 marks remain the same
           </li>
           <li>
-            If quiz3 marks are 7 or 8, quiz1 marks are set to (quiz1+2) or (10),
+            If Quiz3 marks are 7 or 8, Quiz1 marks are set to (quiz1+2) or (10),
             whichever one is lower. Quiz2 marks remain the same
           </li>
           <li>
-            If quiz3 marks are 9 or 10, quiz1 marks are set to (quiz1+3) or
+            If Quiz3 marks are 9 or 10, Quiz1 marks are set to (quiz1+3) or
             (10), whichever one is lower. Quiz2 marks remain the same
           </li>
           <li>
-            If quiz3 marks are 11 or 12, quiz1 marks are set to (quiz1+5) or
-            (10), whichever one is lower. Then quiz2 marks are set to
-            quiz2+(updated_quiz1_marks - original_quiz1_marks) or 10, whichever
+            If Quiz3 marks are 11 or 12, Quiz1 marks are set to (quiz1+5) or
+            (10), whichever one is lower. Then Quiz2 marks are set to
+            (quiz2+(updated_quiz1_marks - original_quiz1_marks)) or (10), whichever
             one is lower
           </li>
           <li>Here is the code snippet: </li>
