@@ -135,6 +135,7 @@ function App() {
         className="form-group custom-form"
         onSubmit={(e) => handleFileSubmit(e, "quiz1")}
       >
+        <label>Quiz1: </label>
         <input
           type="file"
           accept=".xlsx, .xls"
@@ -150,6 +151,7 @@ function App() {
         className="form-group custom-form"
         onSubmit={(e) => handleFileSubmit(e, "quiz2")}
       >
+        <label>Quiz2: </label>
         <input
           type="file"
           accept=".xlsx, .xls"
@@ -165,6 +167,7 @@ function App() {
         className="form-group custom-form"
         onSubmit={(e) => handleFileSubmit(e, "quiz3")}
       >
+        <label>Quiz3: </label>
         <input
           type="file"
           accept=".xlsx, .xls"
@@ -204,6 +207,15 @@ function App() {
             ? "Quiz2 File Uploaded Successfully"
             : "Please Upload Quiz3 File"}
         </p>
+      </div>
+      <div>
+        <a
+          href="https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View the source code here
+        </a>
       </div>
     </div>
   );
