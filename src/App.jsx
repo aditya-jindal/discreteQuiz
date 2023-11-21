@@ -246,7 +246,7 @@ function App() {
           <li>Here is the code snippet: </li>
           <li>
             <img
-              src="./src/assets/marks_rules.png"
+              src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
               alt="marks rules code snippet"
             />
           </li>
