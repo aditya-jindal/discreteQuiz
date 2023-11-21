@@ -131,9 +131,7 @@ function App() {
       <h3>Discrete Quiz File Generator</h3>
 
       {/* form */}
-      <form
-        onSubmit={(e) => handleFileSubmit(e, "quiz1")}
-      >
+      <form onSubmit={(e) => handleFileSubmit(e, "quiz1")}>
         <label>Quiz1: </label>
         <input
           type="file"
@@ -141,13 +139,9 @@ function App() {
           required
           onChange={(e) => handleFile(e, "quiz1")}
         />
-        <button type="submit" >
-          UPLOAD
-        </button>
+        <button type="submit">UPLOAD</button>
       </form>
-      <form
-        onSubmit={(e) => handleFileSubmit(e, "quiz2")}
-      >
+      <form onSubmit={(e) => handleFileSubmit(e, "quiz2")}>
         <label>Quiz2: </label>
         <input
           type="file"
@@ -155,13 +149,9 @@ function App() {
           required
           onChange={(e) => handleFile(e, "quiz2")}
         />
-        <button type="submit">
-          UPLOAD
-        </button>
+        <button type="submit">UPLOAD</button>
       </form>
-      <form
-        onSubmit={(e) => handleFileSubmit(e, "quiz3")}
-      >
+      <form onSubmit={(e) => handleFileSubmit(e, "quiz3")}>
         <label>Quiz3: </label>
         <input
           type="file"
@@ -169,9 +159,7 @@ function App() {
           required
           onChange={(e) => handleFile(e, "quiz3")}
         />
-        <button type="submit">
-          UPLOAD
-        </button>
+        <button type="submit">UPLOAD</button>
       </form>
       <button
         onClick={() => handleGenerate("quiz1")}
@@ -209,14 +197,22 @@ function App() {
           target="_blank"
           rel="noreferrer"
         >
-           https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx
+          https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx
         </a>{" "}
         <p>
           (To verify the program, you can copy paste the code into chatgpt and
-          ask, <span style={{fontWeight:"bold"}}>&quot;tell me the exact rules by which the marks are updated&quot;</span>){" "}
+          ask,{" "}
+          <span style={{ fontWeight: "bold" }}>
+            &quot;tell me the exact rules by which the marks are updated&quot;
+          </span>
+          ){" "}
         </p>
       </div>
-      <span style={{fontWeight:"bold"}}>Note: </span><span>Please make sure that marks are always numbers, and never empty. Use 0 if the student did not attend the quiz.</span>
+      <span style={{ fontWeight: "bold" }}>Note: </span>
+      <span>
+        Please make sure that marks are always numbers, and never empty. Use 0
+        if the student did not attend the quiz.
+      </span>
       <div>
         <h4>How the app allots marks:-</h4>
         <ul>
@@ -242,17 +238,16 @@ function App() {
           <li>
             If Quiz3 marks are 11 or 12, Quiz1 marks are set to (quiz1+5) or
             (10), whichever one is lower. Then Quiz2 marks are set to
-            (quiz2+(updated_quiz1_marks - original_quiz1_marks)) or (10), whichever
-            one is lower
+            (quiz2+(5-(updated_quiz1_marks - original_quiz1_marks))) or (10),
+            whichever one is lower
           </li>
           <li>Here is the code snippet: </li>
-          
-            <img
-              src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
-              alt="marks rules code snippet"
-              style={{maxWidth:"100vw"}}
-            />
-          
+
+          <img
+            src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
+            alt="marks rules code snippet"
+            style={{ maxWidth: "100vw" }}
+          />
         </ul>
       </div>
     </div>
