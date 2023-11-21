@@ -127,55 +127,49 @@ function App() {
       return exportFile(modifyData(quiz2Data, "quiz2"), "quiz2");
   };
   return (
-    <div className="wrapper">
+    <div>
       <h3>Discrete Quiz File Generator</h3>
 
       {/* form */}
       <form
-        className="form-group custom-form"
         onSubmit={(e) => handleFileSubmit(e, "quiz1")}
       >
         <label>Quiz1: </label>
         <input
           type="file"
           accept=".xlsx, .xls"
-          className="form-control"
           required
           onChange={(e) => handleFile(e, "quiz1")}
         />
-        <button type="submit" className="btn btn-success btn-md">
+        <button type="submit" >
           UPLOAD
         </button>
       </form>
       <form
-        className="form-group custom-form"
         onSubmit={(e) => handleFileSubmit(e, "quiz2")}
       >
         <label>Quiz2: </label>
         <input
           type="file"
           accept=".xlsx, .xls"
-          className="form-control"
           required
           onChange={(e) => handleFile(e, "quiz2")}
         />
-        <button type="submit" className="btn btn-success btn-md">
+        <button type="submit">
           UPLOAD
         </button>
       </form>
       <form
-        className="form-group custom-form"
         onSubmit={(e) => handleFileSubmit(e, "quiz3")}
       >
         <label>Quiz3: </label>
         <input
           type="file"
           accept=".xlsx, .xls"
-          className="form-control"
           required
           onChange={(e) => handleFile(e, "quiz3")}
         />
-        <button type="submit" className="btn btn-success btn-md">
+        <button type="submit">
           UPLOAD
         </button>
       </form>
@@ -215,7 +209,48 @@ function App() {
           rel="noreferrer"
         >
           View the source code here
-        </a>
+        </a>{" "}
+        <span>
+          (To verify the program, you can copy paste the code into chatgpt and
+          ask, <span style={{fontWeight:"bold"}}>&quot;tell me the exact rules by which the marks are updated&quot;</span>){" "}
+        </span>
+      </div>
+      <div>
+        <h4>How the app allots marks:-</h4>
+        <ul>
+          <li>
+            It goes through each and every student&apos;s entry one by one
+          </li>
+          <li>
+            For each student, we get their marks in all 3 quizzes by matching
+            same Registration Number in the 3 files{" "}
+          </li>
+          <li>
+            If quiz3 marks are 5 or 6, quiz1 marks are set to (quiz1+1) or (10),
+            whichever one is lower. Quiz2 marks remain the same
+          </li>
+          <li>
+            If quiz3 marks are 7 or 8, quiz1 marks are set to (quiz1+2) or (10),
+            whichever one is lower. Quiz2 marks remain the same
+          </li>
+          <li>
+            If quiz3 marks are 9 or 10, quiz1 marks are set to (quiz1+3) or
+            (10), whichever one is lower. Quiz2 marks remain the same
+          </li>
+          <li>
+            If quiz3 marks are 11 or 12, quiz1 marks are set to (quiz1+5) or
+            (10), whichever one is lower. Then quiz2 marks are set to
+            quiz2+(updated_quiz1_marks - original_quiz1_marks) or 10, whichever
+            one is lower
+          </li>
+          <li>Here is the code snippet: </li>
+          <li>
+            <img
+              src="./src/assets/marks_rules.png"
+              alt="marks rules code snippet"
+            />
+          </li>
+        </ul>
       </div>
     </div>
   );
