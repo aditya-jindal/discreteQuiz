@@ -65,7 +65,8 @@ form {
 }
 @media (max-width: 768px) {
   .marks-rules{
-    width: 90vw;
+    align-items: start;
+    width: 100vw;
   }
 }
 
