@@ -266,13 +266,13 @@ function App() {
             </li>
             <li>Code snippet for the above: </li>
 
-            <img
-              src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
-              alt="marks rules code snippet"
-              style={{ maxWidth: "100vw" }}
-            />
-          </ul>
-        </div>
+          <img
+            src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
+            alt="marks rules code snippet"
+            style={{ maxWidth: "82vw" }}
+          />
+        </ul>
+      </div>
       </div>
     </div>
   );
