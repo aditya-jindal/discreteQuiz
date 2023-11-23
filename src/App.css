@@ -55,9 +55,20 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 50vw;
+  /* width: 50vw; */
   line-height: 1.2rem;
 }
+@media (min-width: 1000px) {
+  .marks-rules{
+    width: 50vw;
+  }
+}
+@media (max-width: 768px) {
+  .marks-rules{
+    width: 90vw;
+  }
+}
+
 
 .marks-rules h4{
   margin-top:2rem;

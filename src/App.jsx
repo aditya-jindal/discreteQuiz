@@ -269,7 +269,7 @@ function App() {
           <img
             src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
             alt="marks rules code snippet"
-            style={{ maxWidth: "82vw" }}
+            style={{ maxWidth: "100%" }}
           />
         </ul>
       </div>
