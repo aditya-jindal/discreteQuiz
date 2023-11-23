@@ -1,6 +1,6 @@
 import { useState } from "react";
 import * as XLSX from "xlsx";
-// import "./App.css";
+import "./App.css";
 
 function App() {
   const [quiz1Sheet, setQuiz1Sheet] = useState(null);
@@ -127,128 +127,152 @@ function App() {
       return exportFile(modifyData(quiz2Data, "quiz2"), "quiz2");
   };
   return (
-    <div>
-      <h3>Discrete Quiz File Generator</h3>
+    <div className="app">
+      <div className="main-app">
+        <h3 className="main-heading">Discrete Quiz File Generator</h3>
 
-      {/* form */}
-      <form onSubmit={(e) => handleFileSubmit(e, "quiz1")}>
-        <label>Quiz1: </label>
-        <input
-          type="file"
-          accept=".xlsx, .xls"
-          required
-          onChange={(e) => handleFile(e, "quiz1")}
-        />
-        <button type="submit">UPLOAD</button>
-      </form>
-      <form onSubmit={(e) => handleFileSubmit(e, "quiz2")}>
-        <label>Quiz2: </label>
-        <input
-          type="file"
-          accept=".xlsx, .xls"
-          required
-          onChange={(e) => handleFile(e, "quiz2")}
-        />
-        <button type="submit">UPLOAD</button>
-      </form>
-      <form onSubmit={(e) => handleFileSubmit(e, "quiz3")}>
-        <label>Quiz3: </label>
-        <input
-          type="file"
-          accept=".xlsx, .xls"
-          required
-          onChange={(e) => handleFile(e, "quiz3")}
-        />
-        <button type="submit">UPLOAD</button>
-      </form>
-      <button
-        onClick={() => handleGenerate("quiz1")}
-        disabled={!(quiz1Data && quiz2Data && quiz3Data)}
-      >
-        Generate Updated Quiz1 File
-      </button>
-      <button
-        onClick={() => handleGenerate("quiz2")}
-        disabled={!(quiz1Data && quiz2Data && quiz3Data)}
-      >
-        Generate Updated Quiz2 File
-      </button>
-      <div>
-        <p>
-          {quiz1Data
-            ? "Quiz1 File Uploaded Successfully"
-            : "Please Upload Quiz1 File"}
-        </p>
-        <p>
-          {quiz2Data
-            ? "Quiz2 File Uploaded Successfully"
-            : "Please Upload Quiz2 File"}
-        </p>
-        <p>
-          {quiz3Data
-            ? "Quiz2 File Uploaded Successfully"
-            : "Please Upload Quiz3 File"}
-        </p>
-      </div>
-      <div>
-        <span>View the entire source code here: </span>
-        <a
-          href="https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx"
-          target="_blank"
-          rel="noreferrer"
-        >
-          https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx
-        </a>{" "}
-        <p>
-          (To verify the program, you can copy paste the code into chatgpt and
-          ask,{" "}
-          <span style={{ fontWeight: "bold" }}>
-            &quot;tell me the exact rules by which the marks are updated&quot;
-          </span>
-          ){" "}
-        </p>
-      </div>
-      <span style={{ fontWeight: "bold" }}>Note: </span>
-      <span>
-        Please make sure that marks are always numbers, and never empty. Use 0
-        if the student did not attend the quiz.
-      </span>
-      <div>
-        <h4>How the app allots marks:-</h4>
-        <ul>
-          <li>
-            It goes through each and every student&apos;s entry one by one
-          </li>
-          <li>
-            For each student, we get their marks in all 3 quizzes by matching
-            common Registration Number in the 3 files{" "}
-          </li>
-          <li>
-            If Quiz3 marks are 5 or 6, Quiz1 marks are set to (quiz1+1) or (10),
-            whichever one is lower. Quiz2 marks remain the same
-          </li>
-          <li>
-            If Quiz3 marks are 7 or 8, Quiz1 marks are set to (quiz1+2) or (10),
-            whichever one is lower. Quiz2 marks remain the same
-          </li>
-          <li>
-            If Quiz3 marks are 9 or 10, Quiz1 marks are set to (quiz1+3) or
-            (10), whichever one is lower. Quiz2 marks remain the same
-          </li>
-          <li>
-            If Quiz3 marks are 11 or 12, Quiz1 marks are set to (quiz1+5) or
-            (10), whichever one is lower. Then Quiz2 marks are set to
-            (quiz2+(5-(updated_quiz1_marks - original_quiz1_marks))) or (10),
-            whichever one is lower
-          </li>
-          <li>Here is the code snippet: </li>
-
-          <img
-            src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
-            alt="marks rules code snippet"
-            style={{ maxWidth: "100vw" }}
+        {/* form */}
+        <form onSubmit={(e) => handleFileSubmit(e, "quiz1")}>
+          <label>Quiz1: </label>
+          <input
+            type="file"
+            accept=".xlsx, .xls"
+            required
+            onChange={(e) => handleFile(e, "quiz1")}
           />
-        </ul>
+          <button type="submit">UPLOAD</button>
+          {quiz1Data ? (
+            <label className="success">Quiz1 File Uploaded Successfully!</label>
+          ) : (
+            <label className="error"> Quiz1 File Not Uploaded Yet!</label>
+          )}
+        </form>
+        <form onSubmit={(e) => handleFileSubmit(e, "quiz2")}>
+          <label>Quiz2: </label>
+          <input
+            type="file"
+            accept=".xlsx, .xls"
+            required
+            onChange={(e) => handleFile(e, "quiz2")}
+          />
+          <button type="submit">UPLOAD</button>
+          {quiz2Data ? (
+            <label className="success">Quiz2 File Uploaded Successfully!</label>
+          ) : (
+            <label className="error"> Quiz2 File Not Uploaded Yet!</label>
+          )}
+        </form>
+        <form onSubmit={(e) => handleFileSubmit(e, "quiz3")}>
+          <label>Quiz3: </label>
+          <input
+            type="file"
+            accept=".xlsx, .xls"
+            required
+            onChange={(e) => handleFile(e, "quiz3")}
+          />
+          <button type="submit">UPLOAD</button>
+          {quiz3Data ? (
+            <label className="success">Quiz3 File Uploaded Successfully!</label>
+          ) : (
+            <label className="error"> Quiz3 File Not Uploaded Yet!</label>
+          )}
+        </form>
+        <div className="generate">
+          <button
+            onClick={() => handleGenerate("quiz1")}
+            disabled={!(quiz1Data && quiz2Data && quiz3Data)}
+          >
+            Generate Updated Quiz1 File
+          </button>
+          <button
+            onClick={() => handleGenerate("quiz2")}
+            disabled={!(quiz1Data && quiz2Data && quiz3Data)}
+          >
+            Generate Updated Quiz2 File
+          </button>
+        </div>
+      </div>
+      <div className="separator"></div>
+      {/* <div>
+        {quiz1Data ? (
+          <p className="success">Quiz1 File Uploaded Successfully!</p>
+        ) : (
+          <p className="error"> Quiz1 File Not Uploaded Yet!</p>
+        )}
+        {quiz2Data ? (
+          <p className="success">Quiz2 File Uploaded Successfully!</p>
+        ) : (
+          <p className="error"> Quiz2 File Not Uploaded Yet!</p>
+        )}
+        {quiz3Data ? (
+          <p className="success">Quiz3 File Uploaded Successfully!</p>
+        ) : (
+          <p className="error"> Quiz3 File Not Uploaded Yet!</p>
+        )}
+      </div> */}
+      <div className="about">
+        <div className="notes">
+          <span>View the entire source code here: </span>
+          <a
+            href="https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://github.com/aditya-jindal/discreteQuiz/blob/master/src/App.jsx
+          </a>{" "}
+          <p>
+            To verify the program, you can copy paste the code into chatgpt and
+            ask,{" "}
+            <span style={{ fontWeight: "bold" }}>
+              &quot;tell me the exact rules by which the marks are
+              updated&quot;.
+            </span>{" "}
+          </p>
+        </div>
+        <div>
+          <span style={{ fontWeight: "bold" }}>Note: </span>
+          <span>
+            Please make sure that marks are always numbers, and never empty. Use
+            0 if the student did not attend the quiz.
+          </span>
+        </div>
+        <div className="marks-rules">
+          <h4>How the app allots marks:-</h4>
+          <ul>
+            <li>
+              It goes through each and every student&apos;s entry one by one.
+            </li>
+            <li>
+              For each student, we get their marks in all 3 quizzes by matching
+              common Registration Number in the 3 files.{" "}
+            </li>
+            <li>
+              If Quiz3 marks are 5 or 6, Quiz1 marks are set to (quiz1+1) or
+              (10), whichever one is lower. Quiz2 marks remain the same.
+            </li>
+            <li>
+              If Quiz3 marks are 7 or 8, Quiz1 marks are set to (quiz1+2) or
+              (10), whichever one is lower. Quiz2 marks remain the same.
+            </li>
+            <li>
+              If Quiz3 marks are 9 or 10, Quiz1 marks are set to (quiz1+3) or
+              (10), whichever one is lower. Quiz2 marks remain the same.
+            </li>
+            <li>
+              If Quiz3 marks are 11 or 12, Quiz1 marks are set to (quiz1+5) or
+              (10), whichever one is lower. Then Quiz2 marks are set to
+              (quiz2+(5-(updated_quiz1_marks - original_quiz1_marks))) or (10),
+              whichever one is lower.
+            </li>
+            <li>Code snippet for the above: </li>
+
+            <img
+              src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
+              alt="marks rules code snippet"
+              style={{ maxWidth: "100vw" }}
+            />
+          </ul>
+        </div>
       </div>
     </div>
   );
