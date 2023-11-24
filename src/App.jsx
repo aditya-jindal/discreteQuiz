@@ -69,23 +69,35 @@ function App() {
   };
 
   const changedMarks = function (regno, fileName) {
-    const quiz1Marks = quiz1Data.filter(
-      (student) => student["Register No"] === regno
-    )[0].Mark;
-    const quiz2Marks = quiz2Data.filter(
-      (student) => student["Register No"] === regno
-    )[0].Mark;
-    const quiz3Marks = quiz3Data.filter(
-      (student) => student["Register No"] === regno
-    )[0].Mark;
+    const quiz1Marks = Number(
+      quiz1Data.filter((student) => student["Register No"] === regno)[0].Mark
+    );
+    const quiz2Marks = Number(
+      quiz2Data.filter((student) => student["Register No"] === regno)[0].Mark
+    );
+    const quiz3Marks = Number(
+      quiz3Data.filter((student) => student["Register No"] === regno)[0].Mark
+    );
     let quiz1MarksUpdated = quiz1Marks;
     let quiz2MarksUpdated = quiz2Marks;
     if (quiz3Marks >= 5 && quiz3Marks <= 6) {
       quiz1MarksUpdated = Math.min(10, quiz1Marks + 1);
+      quiz2MarksUpdated = Math.min(
+        10,
+        quiz2Marks + (1 - (quiz1MarksUpdated - quiz1Marks))
+      );
     } else if (quiz3Marks >= 7 && quiz3Marks <= 8) {
       quiz1MarksUpdated = Math.min(10, quiz1Marks + 2);
+      quiz2MarksUpdated = Math.min(
+        10,
+        quiz2Marks + (2 - (quiz1MarksUpdated - quiz1Marks))
+      );
     } else if (quiz3Marks >= 9 && quiz3Marks <= 10) {
       quiz1MarksUpdated = Math.min(10, quiz1Marks + 3);
+      quiz2MarksUpdated = Math.min(
+        10,
+        quiz2Marks + (3 - (quiz1MarksUpdated - quiz1Marks))
+      );
     } else if (quiz3Marks >= 11 && quiz3Marks <= 12) {
       quiz1MarksUpdated = Math.min(10, quiz1Marks + 5);
       quiz2MarksUpdated = Math.min(
@@ -131,7 +143,6 @@ function App() {
       <div className="main-app">
         <h3 className="main-heading">Discrete Quiz File Generator</h3>
 
-        {/* form */}
         <form onSubmit={(e) => handleFileSubmit(e, "quiz1")}>
           <label>Quiz1: </label>
           <input
@@ -193,23 +204,6 @@ function App() {
         </div>
       </div>
       <div className="separator"></div>
-      {/* <div>
-        {quiz1Data ? (
-          <p className="success">Quiz1 File Uploaded Successfully!</p>
-        ) : (
-          <p className="error"> Quiz1 File Not Uploaded Yet!</p>
-        )}
-        {quiz2Data ? (
-          <p className="success">Quiz2 File Uploaded Successfully!</p>
-        ) : (
-          <p className="error"> Quiz2 File Not Uploaded Yet!</p>
-        )}
-        {quiz3Data ? (
-          <p className="success">Quiz3 File Uploaded Successfully!</p>
-        ) : (
-          <p className="error"> Quiz3 File Not Uploaded Yet!</p>
-        )}
-      </div> */}
       <div className="about">
         <div className="notes">
           <span>View the entire source code here: </span>
@@ -232,8 +226,8 @@ function App() {
         <div>
           <span style={{ fontWeight: "bold" }}>Note: </span>
           <span>
-            Please make sure that marks are always numbers, and never empty. Use
-            0 if the student did not attend the quiz.
+            Please make sure that all 3 files have details for all 70 students
+            in similar format, even if they didn&apos;t attend the quiz.
           </span>
         </div>
         <div className="marks-rules">
@@ -248,15 +242,21 @@ function App() {
             </li>
             <li>
               If Quiz3 marks are 5 or 6, Quiz1 marks are set to (quiz1+1) or
-              (10), whichever one is lower. Quiz2 marks remain the same.
+              (10), whichever one is lower. Then Quiz2 marks are set to
+              (quiz2+(1-(updated_quiz1_marks - original_quiz1_marks))) or (10),
+              whichever one is lower.
             </li>
             <li>
               If Quiz3 marks are 7 or 8, Quiz1 marks are set to (quiz1+2) or
-              (10), whichever one is lower. Quiz2 marks remain the same.
+              (10), whichever one is lower. Then Quiz2 marks are set to
+              (quiz2+(2-(updated_quiz1_marks - original_quiz1_marks))) or (10),
+              whichever one is lower.
             </li>
             <li>
               If Quiz3 marks are 9 or 10, Quiz1 marks are set to (quiz1+3) or
-              (10), whichever one is lower. Quiz2 marks remain the same.
+              (10), whichever one is lower. Then Quiz2 marks are set to
+              (quiz2+(3-(updated_quiz1_marks - original_quiz1_marks))) or (10),
+              whichever one is lower.
             </li>
             <li>
               If Quiz3 marks are 11 or 12, Quiz1 marks are set to (quiz1+5) or
@@ -266,13 +266,13 @@ function App() {
             </li>
             <li>Code snippet for the above: </li>
 
-          <img
-            src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
-            alt="marks rules code snippet"
-            style={{ maxWidth: "100%" }}
-          />
-        </ul>
-      </div>
+            <img
+              src="https://raw.githubusercontent.com/aditya-jindal/discreteQuiz/master/src/assets/marks_rules.png"
+              alt="marks rules code snippet"
+              style={{ maxWidth: "100%" }}
+            />
+          </ul>
+        </div>
       </div>
     </div>
   );
